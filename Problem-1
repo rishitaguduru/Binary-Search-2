@@ -1,0 +1,55 @@
+#Approach : First find the middle element and from there check the left and  right boundaries
+#Time Complexity - O(n)
+#Space Complexity - O(1)
+
+class Solution(object):
+    def searchRange(self, nums, target):
+        output = [-1,-1]
+        
+        if(self.midvalue(nums,target)==-1):
+               return output
+        else: 
+            checkpoint = self.midvalue(nums,target)
+            
+        left = checkpoint
+        right = checkpoint
+        while(left>=0):
+            if(nums[left]==target):
+                output[0] = left
+                left = left -1
+            else:
+                break
+        while(right<len(nums)):
+           
+            if(nums[right]==target):
+                output[1] = right
+                right = right +1
+            else:
+             
+                break
+        return output
+            
+                
+    def midvalue(self, nums, target):
+        high = len(nums)-1
+        low = 0  
+        if(len(nums)==0):
+            return -1
+        while(low <= high):
+            midvalue = (high + low) //2
+            if(nums[midvalue]>target):
+                high = midvalue -1
+            elif(nums[midvalue]<target):
+                low = midvalue + 1
+            else:
+                return midvalue
+        return -1 
+        
+                
+        
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        
